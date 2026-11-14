@@ -23,10 +23,7 @@ def parse_effective_time(column):
     """Read both timestamp formats in the source contract and normalize to UTC."""
     # The timezone-free representation is already UTC. The second representation
     # includes an offset; Spark converts it to UTC because the session uses UTC.
-    return F.coalesce(
-        F.to_timestamp(column, "yyyy-MM-dd HH:mm:ss"),
-        F.to_timestamp(column, "yyyy-MM-dd'T'HH:mm:ssXXX"),
-    )
+    return F.to_timestamp(column, "yyyy-MM-dd HH:mm:ss")
 
 
 def main():
